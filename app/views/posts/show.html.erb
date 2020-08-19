@@ -1,0 +1,10 @@
+<div class="weel post-single">
+<h2 class="page-header"><%= @post.title %></h2>
+<div class="post-content">
+    <small>Post by:<%= @post.user.name %> On <%= @post.created_at.to_time.strftime('%B %e at %l:%M %p') %></small>
+    <p><%= raw @post.body %></p>
+</div>
+    <%= image_tag @post.image.url, width: '50%' %>
+  </div>
+
+<%= render 'partials/comments' %>

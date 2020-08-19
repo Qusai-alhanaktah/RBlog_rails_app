@@ -1,0 +1,30 @@
+<div class="well">
+<h2 class="page-header"> Users <%= link_to "Add New", admin_users_new_path , class:"btn btn-success"%></h2>      
+<% if @users.exists? %>
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>User Name </th>
+            <th>User Email </th>
+            <th>Date Created</th>
+            <th>Actions</th>
+        </tr>
+        <% @users.each do |user| %>
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.created_at.to_time.strftime('%B %e at %l:%M %p') %></td>
+                <td><%= link_to "Edit", admin_users_edit_path(user.id), class:"btn btn-primary" %>  
+                    <%= link_to "Delete", admin_users_path(user), method: :delete, data:{confirm: "Are you sure!"}, class:"btn btn-danger" %> 
+                </td>
+            </tr>
+        <% end %>
+    </table>
+    <%= will_paginate @users %>
+
+<% else %>
+    <h3>There Are No Users</h3>
+<% end %>
+
+</div>

@@ -1,0 +1,28 @@
+<div class="well">
+<h2 class="page-header">Manage Posts <%= link_to "Add New", new_admin_post_path , class:"btn btn-success"%></h2>      
+<% if @posts.exists? %>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Post Title </th>
+            <th>Post Categories </th>
+            <th>Create Date</th>
+            <th>Actions</th>
+        </tr>
+        <% @posts.each do |post| %>
+            <tr>
+                <td><%= post.title %></td>
+                <td><%= post.category_id %></td>
+                <td><%= post.created_at.to_time.strftime('%B %e at %l:%M %p') %></td>
+                <td><%= link_to "Edit", edit_admin_post_path(post.id), class:"btn btn-primary" %>  
+                    <%= link_to "Delete", admin_post_path(post), method: :delete, data:{confirm: "Are you sure!"}, class:"btn btn-danger" %> 
+                </td>
+            </tr>
+        <% end %>
+    </table>
+    <%= will_paginate @posts %>
+<% else %>
+    <h3>There Are No Posts</h3>
+<% end %>
+
+</div>

@@ -1,0 +1,18 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <div class="fadeIn first">
+            <%= image_tag("user.jpg") %>
+        </div>
+            <%= form_tag admin_sessions_path, :class=>'form-signin' do %>
+                <% if flash[:notice] %>
+                    <div class='alert alert-success'><%= flash[:notice] %></div>
+                <% end %>
+                <% if flash[:alert] %>
+                    <div class='alert alert-danger'><%= flash[:alert] %></div>
+                <% end %> 
+                <%= text_field_tag :email, params[:email], class: 'fadeIn second', placeholder: 'Email Address', id:"login"  %>
+                <%= password_field_tag :password, class: 'fadeIn third', placeholder: 'password', id:"password" %>
+                <%= submit_tag 'Log In', class:"fadeIn fourth" %>
+            <% end %>
+    </div>
+</div>
